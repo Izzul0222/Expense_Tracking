@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TransactionBuild" default="default" basedir=".">
+    <description>Builds, tests, and runs the project TransactionBuild.</description>
+
+    <!-- Force override BEFORE anything else -->
+    <target name="-pre-init">
+        <property name="endorsed.classpath.cmd.line.arg" value=""/>
+        <property name="endorsed.classpath" value=""/>
+    </target>
+
+    <!-- This may also be needed -->
+    <target name="-pre-compile">
+        <property name="endorsed.classpath.cmd.line.arg" value=""/>
+    </target>
+
+    <import file="nbproject/build-impl.xml"/>
+</project>
