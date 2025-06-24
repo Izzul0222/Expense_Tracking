@@ -1,25 +1,13 @@
-# Stage 1: Build with Ant using JDK 17
-FROM eclipse-temurin:17-jdk AS builder
+#Build with Ant 
+# Stage 1: Build with Ant (pinned version)
+FROM ant:1.10.114-jdk23 AS builder
 WORKDIR /app
-
-# Install Ant and copy your entire project
-RUN apt-get update && \
-    apt-get install -y ant && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Copy all files including build.xml
 COPY . .
+RUN antb TransactionBuild.war
 
-# Verify files are copied correctly (debugging)
-RUN ls -la
-
-# Run the Ant build (adjust target name if needed)
-RUN ant dist
-
-# Stage 2: Runtime with Tomcat
-FROM tomcat:9.0-jdk17-openjdk-slim
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY --from=builder /app/dist/TransactionBuild.war /usr/local/tomcat/webapps/ROOT.war
+# Stage 2: Runtime
+FROM tomcat:9.0.84-jdk23
+RUN rm -rf C:\tomcat\apache-tomcat-9.0.84\webapps\*
+COPY target/TransactionBuild.war C:\tomcat\apache-tomcat-9.0.84\webapps\ROOT.war
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
