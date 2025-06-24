@@ -1,13 +1,13 @@
 
 #Build with Ant 
 # Stage 1: Build with Ant (pinned version)
-FROM ant:1.10.14-jdk23 AS builder
+FROM ant:1.10.14-jdk17 AS builder
 WORKDIR /app
 COPY . .
 RUN ant TransactionBuild.war
 
 # Stage 2: Runtime
-FROM tomcat:9.0.84-jdk23
+FROM tomcat:9.0.84-jdk17
 RUN rm -rf C:\tomcat\apache-tomcat-9.0.84\webapps\*
 COPY target/TransactionBuild.war C:\tomcat\apache-tomcat-9.0.84\webapps\ROOT.war
 EXPOSE 8080
