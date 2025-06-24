@@ -13,12 +13,5 @@
         <property name="endorsed.classpath.cmd.line.arg" value=""/>
     </target>
     
-    <target name="dist" depends="compile">
-        <war destfile="dist/TransactionBuild.war" webxml="WebContent/WEB-INF/web.xml">
-            <fileset dir="WebContent"/>
-            <lib dir="WebContent/WEB-INF/lib"/>
-        </war>
-    </target>
-
     <import file="nbproject/build-impl.xml"/>
 </project>
