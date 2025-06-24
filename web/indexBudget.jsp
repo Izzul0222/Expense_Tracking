@@ -3,6 +3,7 @@
 <%@page import="com.budget.model.Budget"%>
 <%@page import="java.util.List"%>
 <%@page import="com.budget.dao.BudgetDAO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
